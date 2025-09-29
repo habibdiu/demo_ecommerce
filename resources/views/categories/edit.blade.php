@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-  <h3>Edit Category</h3>
+  <h3 class="text-center m-3">Edit Category</h3>
   <form method="POST" action="{{ route('categories.update', $category) }}">
     @csrf @method('PUT')
     <div class="mb-3">

@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-<h3>Edit Product</h3>
+<h3 class="text-center m-3">Edit Product</h3>
 <form method="POST" action="{{ route('products.update', $product) }}" enctype="multipart/form-data">
     @csrf 
     @method('PUT')

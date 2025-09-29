@@ -1,7 +1,8 @@
 @extends('layout')
 @section('content')
-  <h3>All Products</h3>
+<div class="text-end mt-3 mb-3">
   <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">Add Product</a>
+</div>
 
   @foreach($subcategories as $sub)
     <h5 class="mt-4">{{ $sub->category->name }} / {{ $sub->name }}</h5>

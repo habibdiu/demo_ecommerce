@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-  <h3>Create Category</h3>
+  <h3 class="text-center m-3">Create Category</h3>
   <form method="POST" action="{{ route('categories.store') }}">
     @csrf
     <div class="mb-3">
