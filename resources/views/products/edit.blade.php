@@ -5,66 +5,57 @@
     @csrf 
     @method('PUT')
 
-    <!-- Category Dropdown -->
-    <div class="mb-3">
-        <label class="form-label">Category</label>
-        <select id="category" name="category_id" class="form-control">
-            <option value="">Select category</option>
-            @foreach($categories as $cat)
-                <option value="{{ $cat->id }}" {{ old('category_id', $product->category_id) == $cat->id ? 'selected' : '' }}>
-                    {{ $cat->name }}
-                </option>
-            @endforeach
-        </select>
-        @error('category_id') <div class="text-danger">{{ $message }}</div> @enderror
-    </div>
-
-    <!-- Subcategory Dropdown -->
-    <div class="mb-3">
-        <label class="form-label">Subcategory</label>
-        <select id="subcategory" name="subcategory_id" class="form-control">
-            <option value="">Select subcategory</option>
-        </select>
-        @error('subcategory_id') <div class="text-danger">{{ $message }}</div> @enderror
-    </div>
-
-    <!-- Name -->
-    <div class="mb-3">
-        <label class="form-label">Name</label>
-        <input name="name" class="form-control" value="{{ old('name', $product->name) }}">
-        @error('name') <div class="text-danger">{{ $message }}</div> @enderror
-    </div>
-
-    <!-- Description -->
-    <div class="mb-3">
-        <label class="form-label">Description</label>
-        <textarea name="description" class="form-control">{{ old('description', $product->description) }}</textarea>
-        @error('description') <div class="text-danger">{{ $message }}</div> @enderror
-    </div>
-
-    <!-- Image -->
-    <div class="mb-3">
-        <label class="form-label">Image (optional)</label>
-        @if($product->image)
-            <div class="mb-2">
-                <img src="{{ asset('storage/' . $product->image) }}" style="height:120px;object-fit:cover;">
-            </div>
-        @endif
-        <input type="file" name="image" class="form-control">
-        @error('image') <div class="text-danger">{{ $message }}</div> @enderror
-    </div>
-
-    <!-- Prices -->
     <div class="row">
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
+            <label class="form-label">Category</label>
+            <select id="category" name="category_id"  class="form-control js-select2" required>
+                <option value="">Select category</option>
+                @foreach($categories as $cat)
+                    <option value="{{ $cat->id }}" {{ old('category_id', $product->category_id) == $cat->id ? 'selected' : '' }}>
+                        {{ $cat->name }}
+                    </option>
+                @endforeach
+            </select>
+            @error('category_id') <div class="text-danger">{{ $message }}</div> @enderror
+        </div>
+        <div class="col-md-4 mb-3">
+            <label class="form-label">Subcategory</label>
+            <select id="subcategory" name="subcategory_id"  class="form-control js-select2" required>
+                <option value="">Select subcategory</option>
+            </select>
+            @error('subcategory_id') <div class="text-danger">{{ $message }}</div> @enderror
+        </div>
+        <div class="col-md-4 mb-3">
+            <label class="form-label">Name</label>
+            <input name="name" class="form-control" value="{{ old('name', $product->name) }}" required>
+            @error('name') <div class="text-danger">{{ $message }}</div> @enderror
+        </div>
+        
+        <div class="col-md-4 mb-3">
             <label class="form-label">Old Price (optional)</label>
             <input name="old_price" class="form-control" value="{{ old('old_price', $product->old_price) }}">
             @error('old_price') <div class="text-danger">{{ $message }}</div> @enderror
         </div>
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
             <label class="form-label">New Price</label>
-            <input name="new_price" class="form-control" value="{{ old('new_price', $product->new_price) }}">
+            <input name="new_price" class="form-control" value="{{ old('new_price', $product->new_price) }}" required>
             @error('new_price') <div class="text-danger">{{ $message }}</div> @enderror
+        </div>
+        <div class="col-md-4 mb-3">
+            <label class="form-label">Image</label>
+            <input type="file" name="image" class="form-control">
+            @if($product->image)
+                <div class="">
+                    <img src="{{ asset('storage/' . $product->image) }}" style="height:60px;object-fit:cover;">
+                </div>
+            @endif
+            @error('image') <div class="text-danger">{{ $message }}</div> @enderror
+        </div>
+
+        <div class="col-md-10 mb-3">
+            <label class="form-label">Description</label>
+            <textarea name="description" class="form-control" rows="6">{{ old('description', $product->description) }}</textarea>
+            @error('description') <div class="text-danger">{{ $message }}</div> @enderror
         </div>
     </div>
 

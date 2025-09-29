@@ -39,6 +39,15 @@
   @endif
 
   @yield('content')
+  <script>
+  $(document).ready(function() {
+      $('.js-select2').select2({
+          placeholder: "Select",
+          allowClear: true
+      });
+  });
+  </script>
+
   @stack('js')
 </div>
 </body>
